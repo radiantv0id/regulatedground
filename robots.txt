@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://regulatedground.com/sitemap.xml

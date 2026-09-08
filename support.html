@@ -4,13 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Support — Regulated Ground</title>
+<meta name="description" content="Get support for spiritual crisis, kundalini adaptation, chronic pain and dysregulation through personal guidance, yoga therapy or group circles with Regulated Ground.">
 <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
 <header class="site">
   <div class="wrap-wide">
-    <div class="logo">Regulated Ground<span class="subtitle">Yoga Therapy &amp; Kundalini Integration</span></div>
+    <div class="logo">Regulated Ground<span class="subtitle">Yoga Therapy &amp; Kundalini Adaptation</span></div>
     <nav class="main">
       <a href="index.html">Home</a>
       <a href="approach.html">Approach</a>
@@ -77,10 +78,14 @@
 <section id="contact">
   <div class="wrap">
     <h2>Contact Me</h2>
-    <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/success.html">
+    <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field-website" action="/success.html">
       <input type="hidden" name="form-name" value="contact" />
+      <input type="hidden" name="form-time" id="form-time" value="">
       <p class="hidden" style="display: none;">
-        <label>Don't fill this out: <input name="bot-field" /></label>
+        <label>Don't fill this out: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+      </p>
+      <p class="hidden" style="display: none;">
+        <label>Leave this field empty: <input name="bot-field-website" tabindex="-1" autocomplete="off" /></label>
       </p>
       <div class="form-row">
         <label for="name">Name</label>
@@ -103,7 +108,10 @@
         <label for="message">Message</label>
         <textarea id="message" name="message" rows="5" required></textarea>
       </div>
-      <button type="submit" class="btn">Send</button>
+      <div class="form-row">
+        <div class="cf-turnstile" data-sitekey="YOUR_TURNSTILE_SITE_KEY" data-callback="onTurnstileSuccess"></div>
+      </div>
+      <button type="submit" class="btn" id="contact-submit" disabled>Send</button>
     </form>
   </div>
 </section>
@@ -147,6 +155,13 @@
   </div>
 </section>
 
+<section>
+  <div class="wrap">
+    <h2>Legal</h2>
+    <p>Please also consult the <a href="widerruf.html">Widerrufsbelehrung (right of withdrawal)</a> and the <a href="terms.html">Terms &amp; Conditions</a> applicable to all bookings.</p>
+  </div>
+</section>
+
 <section class="tinted" style="text-align: center;">
   <div class="wrap">
     <h2>Newsletter Subscription</h2>
@@ -171,6 +186,30 @@
     <a href="disclaimer.html">Disclaimer</a>
   </div>
 </footer>
+
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<script>
+(function () {
+  var form = document.querySelector('form.contact-form[name="contact"]');
+  if (!form) return;
+  var start = Date.now();
+  var timeField = document.getElementById('form-time');
+  if (timeField) timeField.value = String(start);
+  window.onTurnstileSuccess = function () {
+    var btn = document.getElementById('contact-submit');
+    if (btn) btn.disabled = false;
+  };
+  form.addEventListener('submit', function (e) {
+    var elapsed = Date.now() - start;
+    var submitted = Number(timeField.value || 0);
+    var turnstile = document.querySelector('.cf-turnstile input[name="cf-turnstile-response"]');
+    if (elapsed < 4000 || isNaN(submitted) || submitted === 0 || !turnstile || !turnstile.value) {
+      e.preventDefault();
+      return false;
+    }
+  });
+})();
+</script>
 
 </body>
 </html>
