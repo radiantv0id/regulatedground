@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
 
-const smtpHost = process.env.SMTP_HOST || 'smtp.disroot.org';
+const smtpHost = process.env.SMTP_HOST || 'disroot.org';
 const smtpPort = Number(process.env.SMTP_PORT || '465');
 const smtpUser = process.env.SMTP_USER || '';
 const smtpPass = process.env.SMTP_PASS || '';
