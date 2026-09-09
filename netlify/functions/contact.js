@@ -42,7 +42,7 @@ exports.handler = async (event) => {
 
   try {
     await transporter.sendMail({
-      from: smtpUser,
+      from: `"Form Response" <${smtpUser}>`,
       to: toAddress,
       replyTo: email,
       subject: `Contact form: ${name}`,
