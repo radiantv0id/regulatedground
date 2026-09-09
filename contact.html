@@ -44,11 +44,9 @@
 <section id="contact">
   <div class="wrap">
     <h2>Contact Me</h2>
-    <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field-website" action="/success.html">
-      <input type="hidden" name="form-name" value="contact" />
-      <input type="hidden" name="form-time" id="form-time" value="">
+    <form class="contact-form" name="contact" id="contact-form" novalidate>
       <p class="hidden" style="display: none;">
-        <label>Leave this field empty: <input name="bot-field-website" tabindex="-1" autocomplete="off" /></label>
+        <label>Leave this field empty: <input name="bot-field-website" id="bot-field-website" tabindex="-1" autocomplete="off" /></label>
       </p>
       <div class="form-row">
         <label for="name">Name</label>
@@ -72,6 +70,7 @@
         <textarea id="message" name="message" rows="5" required></textarea>
       </div>
       <button type="submit" class="btn" id="contact-submit">Send</button>
+      <p id="form-status" style="display: none; margin-top: 1rem; color: #c0392b;"></p>
     </form>
   </div>
 </section>
@@ -88,18 +87,46 @@
 
 <script>
 (function () {
-  var form = document.querySelector('form.contact-form[name="contact"]');
+  var form = document.getElementById('contact-form');
+  var status = document.getElementById('form-status');
   if (!form) return;
-  var start = Date.now();
-  var timeField = document.getElementById('form-time');
-  if (timeField) timeField.value = String(start);
+
   form.addEventListener('submit', function (e) {
-    var elapsed = Date.now() - start;
-    var submitted = Number(timeField.value || 0);
-    if (elapsed < 3000 || isNaN(submitted) || submitted === 0) {
-      e.preventDefault();
-      return false;
+    e.preventDefault();
+
+    var honeypot = document.getElementById('bot-field-website');
+    if (honeypot && honeypot.value) {
+      window.location.href = '/success.html';
+      return;
     }
+
+    var btn = document.getElementById('contact-submit');
+    btn.disabled = true;
+
+    var payload = {
+      name: document.getElementById('name').value,
+      email: document.getElementById('email').value,
+      interest: document.getElementById('interest').value,
+      message: document.getElementById('message').value
+    };
+
+    status.style.display = 'none';
+
+    fetch('/.netlify/functions/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(function (res) {
+      if (res.ok) {
+        window.location.href = '/success.html';
+      } else {
+        throw new Error('bad response');
+      }
+    }).catch(function () {
+      btn.disabled = false;
+      status.textContent = 'Something went wrong. Please try again or email me directly at nilsfoege@disroot.org.';
+      status.style.display = 'block';
+    });
   });
 })();
 </script>
