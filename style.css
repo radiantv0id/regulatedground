@@ -135,6 +135,13 @@ nav.main .btn-header {
   margin: 0 auto 1rem;
   font-size: 1.05rem;
 }
+.hero hr {
+  max-width: 760px;
+  margin: 0 auto 1rem;
+  border: none;
+  border-top: 1px solid #d8d2c4;
+}
+.hero .tagline { margin-bottom: 2.4rem; }
 
 /* Tinted section */
 .tinted { background: var(--tint); }
@@ -213,6 +220,45 @@ h2 { font-size: 1.8rem; }
   color: var(--ink);
 }
 
+/* What You'll Gain */
+.gain-list {
+  margin: 1.5rem 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 2.5rem;
+}
+.gain-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid #d8d2c4;
+}
+.gain-item:first-child { padding-top: 0; }
+.gain-num {
+  color: var(--green);
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 1;
+  min-width: 2.2rem;
+}
+.gain-text { flex: 1; }
+.gain-text h3 {
+  margin: 0 0 .4rem;
+  color: var(--ink);
+  font-size: 1.15rem;
+}
+.gain-text p { margin: 0; font-size: .95rem; }
+
+/* Story / profile */
+.story-text h2 { margin-top: 0; }
+.profile-pic {
+  float: right;
+  width: 260px;
+  height: auto;
+  border-radius: 8px;
+  margin: .2rem 0 1rem 2.5rem;
+}
+
 /* Footer */
 footer.site {
   border-top: 1px solid #e5e0d5;
@@ -232,8 +278,10 @@ footer.site a:hover { color: var(--green); }
 
 @media (max-width: 700px) {
   .entry-points { grid-template-columns: 1fr; }
+  .gain-list { grid-template-columns: 1fr; }
   .hero h1 { font-size: 1.8rem; }
   header.site .wrap-wide { flex-direction: column; align-items: flex-start; }
+  .profile-pic { float: none; width: 100%; max-width: 320px; margin: 0 auto 1rem; display: block; }
   .dropdown-menu { position: static; transform: none; box-shadow: none; border: none; }
   .dropdown-menu a { white-space: normal; }
 }
