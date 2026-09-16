@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Booking — Regulated Ground</title>
+<meta name="description" content="Book a personal guidance or yoga therapy session with Regulated Ground.">
+<link rel="stylesheet" href="/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#22301F;
+    --moss:#5C6F4F;
+    --moss-deep:#3E4E34;
+    --clay:#AD7A3F;
+    --sand:#EDE9DE;
+    --card:#FAF7EE;
+    --text:#2B2B24;
+    --text-soft:#5C5B4F;
+    --line:rgba(34,48,31,0.18);
+  }
+  .booking-page{background:var(--sand);color:var(--text);font-family:'Inter',sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;}
+  .booking-page h1,.booking-page h2,.booking-page h3{font-family:'Fraunces',serif;font-weight:500;color:var(--ink);margin:0;}
+  .booking-page a{color:inherit;}
+.booking-page .hero{padding:88px 0 64px;position:relative;overflow:hidden;text-align:center;}
+  .booking-wrap{padding:0 28px;}
+  .booking-page .booking-hero-text h1{font-size:clamp(34px,5vw,48px);line-height:1.12;letter-spacing:-0.01em;max-width:11ch;margin-left:auto;margin-right:auto;}
+  .booking-page .booking-hero-text p{margin:18px auto 0;max-width:46ch;font-size:17px;color:var(--text-soft);}
+
+  .booking-page .booking-stage{padding:0 0 56px;}
+  .booking-page .booking-stage:last-child{padding-bottom:1rem;}
+  .booking-page .booking-stage h2{font-size:23px;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;}
+  .booking-page .price{font-family:'Fraunces',serif;font-size:19px;color:var(--clay);font-weight:500;white-space:nowrap;}
+  .booking-page .price .free{color:var(--clay);}
+  .booking-page .booking-stage p{margin:12px 0 0;max-width:52ch;color:var(--text-soft);font-size:15.5px;}
+
+  .booking-page .subgrid{margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .booking-page .sub h3{font-size:16px;font-weight:600;font-family:'Inter',sans-serif;color:var(--ink);}
+  .booking-page .sub p{margin-top:6px;font-size:14.5px;}
+  .booking-page .shared-price{margin-top:18px;display:flex;gap:28px;font-size:14.5px;color:var(--text-soft);}
+  .booking-page .shared-price span{color:var(--clay);font-weight:600;}
+
+  .booking-page .packages{margin:20px 0 0;max-width:560px;border:1px solid var(--line);border-radius:2px;overflow:hidden;}
+  .booking-page .pkg-row{display:grid;grid-template-columns:1fr auto auto auto;gap:16px;padding:14px 18px;font-size:14.5px;align-items:center;}
+  .booking-page .pkg-row:not(:last-child){border-bottom:1px solid var(--line);}
+  .booking-page .pkg-row .len{color:var(--text-soft);}
+  .booking-page .pkg-row .amt{font-family:'Fraunces',serif;color:var(--clay);font-size:16px;}
+  .booking-page .pkg-row .valid{color:var(--text-soft);font-size:13px;}
+
+  .booking-page .policy{margin:20px 0 0;padding:24px 0 0;border-top:1px solid var(--line);max-width:560px;}
+  .booking-page .policy h2{font-family:'Fraunces',serif;font-size:23px;font-weight:500;color:var(--ink);margin-bottom:8px;}
+  .booking-page .policy p{font-size:14px;color:var(--text-soft);max-width:56ch;}
+
+  @media(max-width:700px){
+    .booking-page .subgrid{grid-template-columns:1fr;}
+    .booking-page .pkg-row{grid-template-columns:1fr 1fr;}
+    .booking-page .pkg-row .valid{grid-column:span 2;}
+    .booking-page .pkg-row .pkg-btn{grid-column:span 2;justify-self:start;}
+  }
+
+  .book-btn{
+    display:inline-block;margin-top:18px;padding:11px 26px;
+    background:var(--moss-deep);color:var(--card);border:none;cursor:pointer;
+    font-family:'Inter',sans-serif;font-size:14px;font-weight:600;
+    border-radius:2px;text-decoration:none;transition:background 0.15s ease;
+  }
+  .book-btn:hover{background:var(--ink);}
+  .booking-page .pkg-btn{
+    padding:7px 16px;background:var(--moss-deep);color:var(--card);border:none;cursor:pointer;
+    font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;
+    border-radius:2px;text-decoration:none;transition:background 0.15s ease;
+  }
+  .booking-page .pkg-btn:hover{background:var(--ink);color:var(--card);}
+  .book-row{display:flex;gap:14px;margin-top:18px;flex-wrap:wrap;}
+  .book-row .book-btn{margin-top:0;}
+</style>
+<script>
+  (function (C, A, L) {
+    let p = function (a, ar) { a.q.push(ar); };
+    let d = C.document;
+    C.Cal = C.Cal || function () {
+      let cal = C.Cal;
+      let ar = arguments;
+      if (!cal.loaded) {
+        cal.ns = {};
+        cal.q = cal.q || [];
+        d.head.appendChild(d.createElement("script")).src = A;
+        cal.loaded = true;
+      }
+      if (ar[0] === L) {
+        const api = function () { p(api, arguments); };
+        const namespace = ar[1];
+        api.q = api.q || [];
+        if (typeof namespace === "string") {
+          cal.ns[namespace] = cal.ns[namespace] || api;
+          p(cal.ns[namespace], ar);
+          p(cal, ["initNamespace", namespace]);
+        } else p(cal, ar);
+        return;
+      }
+      p(cal, ar);
+    };
+  })(window, "https://app.cal.com/embed/embed.js", "init");
+</script>
+</head>
+<body class="booking-page">
+
+<header class="site">
+  <div class="wrap-wide">
+    <div class="logo"><img src="logo_filled.svg" alt="Regulated Ground"><span class="logo-text">Regulated Ground<span class="subtitle">Yoga Therapy &amp; Kundalini Adaptation</span></span></div>
+    <nav class="main">
+      <a href="index.html">Home</a>
+      <a href="approach.html">Approach</a>
+      <div class="dropdown">
+        <a href="education.html">Education</a>
+        <div class="dropdown-menu">
+          <a href="education.html">Kundalini Demystified</a>
+          <a href="education.html">Kundalini Syndrome</a>
+          <a href="education.html">Understanding Chronic Pain</a>
+          <a href="education.html">Self-Help: Crisis Survival Guide</a>
+          <a href="education.html">Glossary</a>
+        </div>
+      </div>
+      <a href="support.html">Support</a>
+      <a href="booking.html" class="active">Booking</a>
+      <div class="dropdown">
+        <a href="about.html">About</a>
+        <div class="dropdown-menu">
+          <a href="about.html">My Story</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+      <span class="lang-toggle"><a href="#" class="active">EN</a><span>·</span><a href="#">DE</a></span>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap booking-wrap">
+    <div class="booking-hero-text">
+      <h1>BOOKING</h1>
+      <hr style="max-width:760px;margin:18px auto 0;border:none;border-top:1px solid var(--line);">
+      <p style="margin-top:14px;font-size:15px;color:var(--text-soft);">SESSIONS &amp; PRICING</p>
+    </div>
+  </div>
+</section>
+
+<div class="wrap booking-wrap">
+  <div class="booking-stage">
+    <h2>Intro Call <span class="price"><span class="free">Free</span></span></h2>
+    <p>A short 15-minute call to get to know your situation, answer your questions, and see whether working together would be a good fit. This is a conversation and not an assessment or practice session.</p>
+    <button class="book-btn" data-cal-link="regulatedground/intro-call" data-cal-config='{"layout":"column_view"}'>Book Intro Call</button>
+  </div>
+
+  <div class="booking-stage">
+    <h2>Initial Consultation &amp; Assessment <span class="price">80 USD</span></h2>
+    <p>In the first session we look at your history, your goals, the current state of your body-mind and nervous system, and discuss a practice roadmap tailored to your needs. If you are having kundalini-related issues, a thorough assessment of the phase, direction and blockages of your process will be done.</p>
+    <button class="book-btn" data-cal-link="regulatedground/initial-consultation" data-cal-config='{"layout":"column_view"}'>Book Initial Consultation</button>
+  </div>
+
+  <div class="booking-stage">
+    <h2>Follow-Up Sessions</h2>
+    <div class="shared-price">
+      <div>60 minutes — <span>80 USD</span></div>
+      <div>75 minutes — <span>100 USD</span></div>
+    </div>
+    <p>Each session includes 45 minutes of practice made up of movement, breathing, and guided meditation/relaxation. During the rest of the session we discuss the practice and its effect and I will provide adjustments or additional home practices.</p>
+    <div class="subgrid">
+      <div class="sub">
+        <h3>Yoga Therapy</h3>
+        <p>Practice-based: movement, breathing, and guided meditation/relaxation, followed by discussion and home-practice adjustments.</p>
+      </div>
+      <div class="sub">
+        <h3>Personal Guidance</h3>
+        <p>Conversation-based: coaching and integration support, processing what's arising and staying aligned with your practice and goals.</p>
+      </div>
+    </div>
+    <div class="book-row">
+      <button class="book-btn" data-cal-link="regulatedground/follow-up-60" data-cal-config='{"layout":"column_view"}'>Book 60 min</button>
+      <button class="book-btn" data-cal-link="regulatedground/follow-up-75" data-cal-config='{"layout":"column_view"}'>Book 75 min</button>
+    </div>
+  </div>
+
+  <div class="booking-stage">
+    <h2>Support Packages</h2>
+    <p>For those working together regularly, on a weekly or bi-weekly rhythm.</p>
+    <div class="packages">
+      <div class="pkg-row"><div class="len">5 × 60 minutes</div><div class="amt">375 USD</div><div class="valid">valid 3 months</div><a class="pkg-btn" href="contact.html">Inquire</a></div>
+      <div class="pkg-row"><div class="len">5 × 75 minutes</div><div class="amt">450 USD</div><div class="valid">valid 3 months</div><a class="pkg-btn" href="contact.html">Inquire</a></div>
+      <div class="pkg-row"><div class="len">10 × 60 minutes</div><div class="amt">700 USD</div><div class="valid">valid 6 months</div><a class="pkg-btn" href="contact.html">Inquire</a></div>
+      <div class="pkg-row"><div class="len">10 × 75 minutes</div><div class="amt">850 USD</div><div class="valid">valid 6 months</div><a class="pkg-btn" href="contact.html">Inquire</a></div>
+    </div>
+  </div>
+
+  <div class="booking-stage">
+    <h2>Sliding Scale</h2>
+    <p>One sliding-scale spot is available at a time for those in financial need. The reduced rate applies as long as we work together. When the spot becomes available, it opens to a new applicant. Feel free to ask.</p>
+  </div>
+
+  <div class="booking-stage">
+    <div class="policy">
+      <h2>Cancellation Policy</h2>
+      <p>Please let me know at least 48 hours in advance if you need to cancel or reschedule your appointment. Missed appointments or cancellations with less than 48 hours' notice will incur the full session fee.</p>
+    </div>
+  </div>
+</div>
+
+<section class="tinted" style="text-align: center;">
+  <div class="wrap">
+    <h2>Newsletter Subscription</h2>
+    <form class="newsletter" onsubmit="return false;">
+      <input type="email" placeholder="you@email.com" required aria-label="Email address">
+      <button type="submit" class="btn">Subscribe</button>
+    </form>
+    <div class="disclaimer-note">
+      <hr>
+      <p>I do not provide instructions for willfully awakening kundalini, as the value and safety of such practices are debatable. The purpose of this site is solely to raise awareness of kundalini and related processes, and to support individuals in harmonizing and regulating an already active or misdirected process.</p>
+      <p>All guidance offered here is complementary and not a substitute for medical or psychological treatment.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap-wide">
+    © 2026 Regulated Ground. All rights reserved.
+    <a href="site-note.html">Site Note</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms &amp; Conditions</a>
+  </div>
+</footer>
+
+<script>
+  Cal("init");
+  Cal("ui", {
+    layout: "column_view",
+    theme: "light",
+    styles: {
+      branding: { brandColor: "#3E4E34" },
+      body: { background: "#FAF7EE" }
+    }
+  });
+</script>
+
+<script>
+  (function () {
+    function narrowModal(box) {
+      if (!box.shadowRoot || box.__calNarrowed) return;
+      box.__calNarrowed = true;
+      var style = document.createElement("style");
+      style.textContent = ".modal-box{max-width:900px;width:100%;}";
+      box.shadowRoot.appendChild(style);
+    }
+    var observer = new MutationObserver(function (muts) {
+      muts.forEach(function (m) {
+        m.addedNodes.forEach(function (n) {
+          if (n.nodeType === 1) {
+            if (n.tagName === "CAL-MODAL-BOX") narrowModal(n);
+            if (n.querySelectorAll) n.querySelectorAll("cal-modal-box").forEach(narrowModal);
+          }
+        });
+      });
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+    document.querySelectorAll("cal-modal-box").forEach(narrowModal);
+  })();
+</script>
+
+</body>
+</html>

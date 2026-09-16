@@ -23,8 +23,8 @@ p + h1, p + h2, p + h3, p + h4, p + h5, p + h6 { margin-bottom: 0; }
 
 h1, h2, h3, h4, h5, h6 { color: #D97757; }
 
-.wrap { max-width: 760px; margin: 0 auto; padding: 1.5rem 1.25rem; }
-.wrap-wide { max-width: 1080px; margin: 0 auto; padding: 1.5rem 1.5rem; }
+.wrap { max-width: 760px; margin: 0 auto; padding: 1rem 1.25rem; }
+.wrap-wide { max-width: 1080px; margin: 0 auto; padding: 1rem 1.5rem; }
 
 /* Header */
 header.site {
@@ -39,6 +39,15 @@ header.site .wrap-wide {
   gap: 1rem;
 }
 .logo {
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+}
+.logo img {
+  width: 3rem;
+  height: auto;
+}
+.logo-text {
   font-size: 2rem;
   font-weight: bold;
   color: var(--green);
@@ -129,6 +138,7 @@ nav.main .btn-header {
   max-width: 720px;
   margin: 0 auto 1.5rem;
   color: var(--ink);
+  white-space: nowrap;
 }
 .lede {
   max-width: 720px;
@@ -142,6 +152,12 @@ nav.main .btn-header {
   border-top: 1px solid #d8d2c4;
 }
 .hero .tagline { margin-bottom: 2.4rem; }
+.symbol-placeholder {
+  text-align: center;
+  margin: 2rem 0;
+  color: var(--gold);
+  font-size: 1.2rem;
+}
 
 /* Tinted section */
 .tinted { background: var(--tint); }
@@ -160,6 +176,7 @@ h2 { font-size: 1.8rem; }
   border-radius: 8px;
 }
 .entry h3 { margin-top: 0; color: var(--green); }
+.entry-btn { margin: 1.25rem 0 0; }
 .btn {
   display: inline-block;
   background: var(--green);
@@ -200,7 +217,7 @@ h2 { font-size: 1.8rem; }
 }
 
 /* Contact form */
-.contact-form { max-width: 520px; }
+.contact-form { max-width: 520px; margin: 0 auto; text-align: left; }
 .form-row { margin-bottom: 1rem; }
 .form-row label {
   display: block;
