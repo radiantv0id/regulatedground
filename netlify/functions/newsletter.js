@@ -47,7 +47,7 @@ exports.handler = async (event) => {
 
     const detail = await res.text();
     console.error('Brevo create contact failed:', res.status, detail);
-    return { statusCode: 502, body: JSON.stringify({ error: 'Newsletter service error' }) };
+    return { statusCode: 502, body: JSON.stringify({ error: 'Newsletter service error', detail }) };
   } catch (err) {
     console.error('Brevo request failed:', err);
     return { statusCode: 502, body: JSON.stringify({ error: 'Newsletter service error' }) };
