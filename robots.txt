@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
+Disallow: /success.html
+Disallow: /privacy.html
+Disallow: /terms.html
+Disallow: /site-note.html
 
 Sitemap: https://regulatedground.com/sitemap.xml
